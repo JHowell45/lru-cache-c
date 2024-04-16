@@ -40,5 +40,16 @@ bool nodeHasChild(node *n) {
 }
 
 void nodePrint(node *n) {
-    
+    char *parent = "NULL";
+    char *child = "NULL";
+
+    if (nodeHasParent(n)) {
+        asprintf(&parent, "%d", n->parent->id);
+    }
+
+    if (nodeHasChild(n)) {
+        asprintf(&child, "%d", n->child->id);
+    }
+
+    printf("Node { id: %d, parent: %s, child: %s }\n", n->id, parent, child);
 }
