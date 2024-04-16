@@ -7,4 +7,14 @@ typedef struct node {
     node *child;
 } node;
 
+node * newNode(int id);
+
+void nodeAddParent(node *root, node *parent);
+
+void nodeSetParentNull(node *root);
+
+void nodeAddChild(node *root, node *child);
+
+void nodeSetChildNull(node *root);
+
 #endif
