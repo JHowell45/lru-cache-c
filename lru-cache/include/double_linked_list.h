@@ -3,8 +3,8 @@
 
 typedef struct node {
     int id;
-    node *parent;
-    node *child;
+    struct node *parent;
+    struct node *child;
 } node;
 
 node * newNode(int id);
