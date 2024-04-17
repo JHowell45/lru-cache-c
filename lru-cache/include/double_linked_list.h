@@ -1,20 +1,30 @@
 #ifndef DOUBLE_LINKED_LIST_H
 #define DOUBLE_LINKED_LIST_H
 
+#include <stdbool.h>
+
 typedef struct node {
-    int id;
-    struct node *parent;
-    struct node *child;
+    int key;
+    struct node *prev;
+    struct node *next;
 } node;
 
 node * newNode(int id);
 
-void nodeAddParent(node *root, node *parent);
+void freeNode(node *n);
 
-void nodeSetParentNull(node *root);
+void nodeFreeAll(node *n);
 
-void nodeAddChild(node *root, node *child);
+void nodeSetPrev(node *root, node *prev);
 
-void nodeSetChildNull(node *root);
+void nodeSetNext(node *root, node *next);
+
+bool nodeHasPrev(node *n);
+
+bool nodeHasNext(node *n);
+
+void nodePrint(node *n);
+
+void nodePrintPath(node *n);
 
 #endif
