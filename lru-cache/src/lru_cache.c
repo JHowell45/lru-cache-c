@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "double_linked_list.h"
 #include "lru_cache.h"
@@ -50,5 +51,13 @@ void lruCachePopTail(lruCache *cache) {
 }
 
 void lruCachePrint(lruCache *cache) {
-
+    printf("LRU Cache {\n");
+    printf("\tcapacity: %zu\n", cache->capacity);
+    printf("\thead: ");
+    if (cache->head != NULL) {
+        nodePrintPath(cache->head);
+    } else {
+        printf("NULL\n");
+    }
+    printf("}\n");
 }
