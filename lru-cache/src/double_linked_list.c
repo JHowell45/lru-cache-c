@@ -3,32 +3,46 @@
 
 #include "double_linked_list.h"
 
-node * newNode(int id) {
+node * newNode(int key) {
     node *n = (node *)malloc(sizeof(node));
-    n->id = id;
+    n->key = key;
     n->prev = NULL;
     n->next = NULL;
     return n;
 }
 
-void nodeAddPrev(node *root, node *prev) {
+void freeNode(node *n) {
+    n->prev = NULL;
+    n->next = NULL;
+    free(n);
+}
+
+void nodeFreeAll(node *n) {
+    if (n->prev != NULL) {
+        node *prev = n->prev;
+        while(prev != NULL) {
+            node *temp = prev;
+            prev = prev->prev;
+            free(temp);
+        }
+    } 
+    if (n->next != NULL) {
+        node *next = n->next;
+        while(next != NULL) {
+            node *temp = next;
+            next = next->next;
+            free(temp);
+        }
+    }
+    free(n);
+}
+
+void nodeSetPrev(node *root, node *prev) {
     root->prev = prev;
-    prev->next = root;
 }
 
-void nodeSetPrevNull(node *root) {
-    root->prev->next = NULL;
-    root->prev = NULL;
-}
-
-void nodeAddNext(node *root, node *next) {
+void nodeSetNext(node *root, node *next) {
     root->next = next;
-    next->prev = root;
-}
-
-void nodeSetNextNull(node *root) {
-    root->next->prev = NULL;
-    root->next = NULL;
 }
 
 bool nodeHasPrev(node *n) {
@@ -40,34 +54,15 @@ bool nodeHasNext(node *n) {
 }
 
 void nodePrint(node *n) {
-    char *prev = "NULL";
-    char *next = "NULL";
 
-    if (nodeHasPrev(n)) {
-        asprintf(&prev, "%d", n->prev->id);
-    }
-
-    if (nodeHasNext(n)) {
-        asprintf(&next, "%d", n->next->id);
-    }
-
-    printf("Node { id: %d, prev: %s, next: %s }\n", n->id, prev, next);
 }
 
 void nodePrintPath(node *n) {
-    printf("(%d)", n->id);
+    printf("(%d)", n->key);
     node *temp = n->next;
     while (temp != NULL) {
-        printf("->(%d)", temp->id);
+        printf("->(%d)", temp->key);
         temp = temp->next;
     }
     printf("\n");
-}
-
-void nodePrintPathFromRoot(node *n) {
-    node *root = n;
-    while (root->prev != NULL) {
-        root = root->prev;
-    }
-    nodePrintPath(root);
 }

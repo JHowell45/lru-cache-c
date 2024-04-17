@@ -4,20 +4,20 @@
 #include <stdbool.h>
 
 typedef struct node {
-    int id;
+    int key;
     struct node *prev;
     struct node *next;
 } node;
 
 node * newNode(int id);
 
-void nodeAddPrev(node *root, node *prev);
+void freeNode(node *n);
 
-void nodeSetPrevNull(node *root);
+void nodeFreeAll(node *n);
 
-void nodeAddNext(node *root, node *next);
+void nodeSetPrev(node *root, node *prev);
 
-void nodeSetNextNull(node *root);
+void nodeSetNext(node *root, node *next);
 
 bool nodeHasPrev(node *n);
 
@@ -26,7 +26,5 @@ bool nodeHasNext(node *n);
 void nodePrint(node *n);
 
 void nodePrintPath(node *n);
-
-void nodePrintPathFromRoot(node *n);
 
 #endif
