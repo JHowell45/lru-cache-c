@@ -6,50 +6,68 @@
 node * newNode(int id) {
     node *n = (node *)malloc(sizeof(node));
     n->id = id;
-    n->parent = NULL;
-    n->child = NULL;
+    n->prev = NULL;
+    n->next = NULL;
     return n;
 }
 
-void nodeAddParent(node *root, node *parent) {
-    root->parent = parent;
-    parent->child = root;
+void nodeAddPrev(node *root, node *prev) {
+    root->prev = prev;
+    prev->next = root;
 }
 
-void nodeSetParentNull(node *root) {
-    root->parent->child = NULL;
-    root->parent = NULL;
+void nodeSetPrevNull(node *root) {
+    root->prev->next = NULL;
+    root->prev = NULL;
 }
 
-void nodeAddChild(node *root, node *child) {
-    root->child = child;
-    child->parent = root;
+void nodeAddNext(node *root, node *next) {
+    root->next = next;
+    next->prev = root;
 }
 
-void nodeSetChildNull(node *root) {
-    root->child->parent = NULL;
-    root->child = NULL;
+void nodeSetNextNull(node *root) {
+    root->next->prev = NULL;
+    root->next = NULL;
 }
 
-bool nodeHasParent(node *n) {
-    return n->parent != NULL;
+bool nodeHasPrev(node *n) {
+    return n->prev != NULL;
 }
 
-bool nodeHasChild(node *n) {
-    return n->child != NULL;
+bool nodeHasNext(node *n) {
+    return n->next != NULL;
 }
 
 void nodePrint(node *n) {
-    char *parent = "NULL";
-    char *child = "NULL";
+    char *prev = "NULL";
+    char *next = "NULL";
 
-    if (nodeHasParent(n)) {
-        asprintf(&parent, "%d", n->parent->id);
+    if (nodeHasPrev(n)) {
+        asprintf(&prev, "%d", n->prev->id);
     }
 
-    if (nodeHasChild(n)) {
-        asprintf(&child, "%d", n->child->id);
+    if (nodeHasNext(n)) {
+        asprintf(&next, "%d", n->next->id);
     }
 
-    printf("Node { id: %d, parent: %s, child: %s }\n", n->id, parent, child);
+    printf("Node { id: %d, prev: %s, next: %s }\n", n->id, prev, next);
+}
+
+void nodePrintPath(node *n) {
+    printf("(%d)", n->id);
+    node *temp = n->next;
+    while (temp != NULL) {
+        printf("->(%d)", temp->id);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void nodePrintPathFromRoot(node *n) {
+    node *root = n;
+    while (root->prev != NULL) {
+        root = root->prev;
+    }
+    nodePrintPath(root);
 }

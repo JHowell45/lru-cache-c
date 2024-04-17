@@ -5,9 +5,8 @@
 
 int main(void) {
     node *n = newNode(4);
-    nodePrint(n);
     node *parent = newNode(2);
-    nodeAddParent(n, parent);
+    nodeAddPrev(n, parent);
     nodePrint(n);
     return 0;
 }

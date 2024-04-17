@@ -5,24 +5,28 @@
 
 typedef struct node {
     int id;
-    struct node *parent;
-    struct node *child;
+    struct node *prev;
+    struct node *next;
 } node;
 
 node * newNode(int id);
 
-void nodeAddParent(node *root, node *parent);
+void nodeAddPrev(node *root, node *prev);
 
-void nodeSetParentNull(node *root);
+void nodeSetPrevNull(node *root);
 
-void nodeAddChild(node *root, node *child);
+void nodeAddNext(node *root, node *next);
 
-void nodeSetChildNull(node *root);
+void nodeSetNextNull(node *root);
 
-bool nodeHasParent(node *n);
+bool nodeHasPrev(node *n);
 
-bool nodeHasChild(node *n);
+bool nodeHasNext(node *n);
 
 void nodePrint(node *n);
+
+void nodePrintPath(node *n);
+
+void nodePrintPathFromRoot(node *n);
 
 #endif
