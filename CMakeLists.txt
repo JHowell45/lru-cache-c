@@ -23,5 +23,8 @@ set_target_properties(${LIBRARY_NAME} PROPERTIES
     PUBLIC_HEADER ${INCLUDE_DIR}/*.h
 )
 
-add_executable(double_linked_list_example ${PROJECT_EXAMPLE_DIR}/double_linked_list_example.c)
-target_link_libraries(double_linked_list_example ${LIBRARY_NAME})
+add_executable(double_linked_list ${PROJECT_EXAMPLE_DIR}/double_linked_list_example.c)
+target_link_libraries(double_linked_list ${LIBRARY_NAME})
+
+add_executable(lru_cache ${PROJECT_EXAMPLE_DIR}/lru_cache_example.c)
+target_link_libraries(lru_cache ${LIBRARY_NAME})
