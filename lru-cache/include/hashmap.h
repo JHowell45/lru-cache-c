@@ -14,6 +14,8 @@ typedef struct hashmap {
     bucket **buckets;
 } hashmap;
 
+hashmap * newHashmap(void);
+
 int hashmapSearch(hashmap *map, char* key);
 
 void hashmapInsert(hashmap *map, char* key, int value);
