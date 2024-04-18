@@ -9,3 +9,16 @@ static bucket * newBucket(const char *key, int value) {
     item->value = value;
     return item;
 }
+
+static void deleteBucket(bucket *item) {
+    free(item->key);
+    free(item->value);
+    free(item);
+}
+
+hashmap * newHashmap(void) {
+    hashmap *map = (hashmap *)malloc(sizeof(hashmap));
+    map->capacity = 100;
+    map->count = 0;
+    map->buckets = calloc(map->capacity, sizeof(bucket *));
+}
