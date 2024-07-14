@@ -20,4 +20,20 @@ hashmap * newHashmap(void) {
     map->capacity = 100;
     map->count = 0;
     map->buckets = calloc(map->capacity, sizeof(bucket *));
+    return map;
+}
+
+void freeHashmap(hashmap *map) {
+    for (int i = 0; i < map->count; i++) {
+        bucket *item = map->buckets[i];
+        if (item != NULL) {
+            freeBucket(item);
+        }
+    }
+    free(map->buckets);
+    free(map);
+}
+
+static int modularHashing(const int value, const int prime) {
+    return value % prime;
 }
