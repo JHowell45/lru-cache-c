@@ -16,6 +16,8 @@ typedef struct hashmap {
 
 hashmap * newHashmap(void);
 
+void freeHashmap(hashmap *map);
+
 int hashmapSearch(hashmap *map, char* key);
 
 void hashmapInsert(hashmap *map, char* key, int value);
