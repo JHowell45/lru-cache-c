@@ -10,9 +10,8 @@ static bucket * newBucket(const char *key, int value) {
     return item;
 }
 
-static void deleteBucket(bucket *item) {
+static void freeBucket(bucket *item) {
     free(item->key);
-    free(item->value);
     free(item);
 }
 
