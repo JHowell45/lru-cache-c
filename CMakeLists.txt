@@ -28,3 +28,6 @@ target_link_libraries(double_linked_list ${LIBRARY_NAME})
 
 add_executable(lru_cache ${PROJECT_EXAMPLE_DIR}/lru_cache_example.c)
 target_link_libraries(lru_cache ${LIBRARY_NAME})
+
+add_executable(hashmap ${PROJECT_EXAMPLE_DIR}/hashmap_example.c)
+target_link_libraries(hashmap ${LIBRARY_NAME})
